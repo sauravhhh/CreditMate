@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Analysis Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="status-bar">
+            <!-- Empty status bar -->
+        </div>
+        
+        <div class="content">
+            <div class="header">
+                <div class="logo">📊</div>
+                <div class="subtitle">Credit Analysis Tool</div>
+            </div>
+            
+            <div class="info-box">
+                <div class="info-text">Analyze your credit utilization and get insights about your credit health. Works with all types of credit cards.</div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="creditLimit">Credit Limit</label>
+                <div class="input-container">
+                    <span class="currency-prefix">₹</span>
+                    <input type="number" id="creditLimit" class="input with-prefix" placeholder="0" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="creditUtilized">Credit Utilised</label>
+                <div class="input-container">
+                    <span class="currency-prefix">₹</span>
+                    <input type="number" id="creditUtilized" class="input with-prefix" placeholder="0" required>
+                </div>
+                <div class="error-message" id="utilizedError">Credit utilized cannot exceed credit limit</div>
+            </div>
+            
+            <button class="btn" onclick="analyzeCredit()">Analyze Credit</button>
+            
+            <div class="results" id="results">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-title">Credit Utilization Ratio</div>
+                        <svg class="metric-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                        </svg>
+                    </div>
+                    <div class="metric-value" id="utilizationRatio">0%</div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                    <div class="metric-description" id="utilizationDescription">Your credit utilization ratio</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-title">Available Credit</div>
+                        <svg class="metric-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="metric-value" id="availableCredit">₹0</div>
+                    <div class="metric-description">Remaining credit you can use</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-title">Credit Health Status</div>
+                        <svg class="metric-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="metric-value" id="healthStatus">Good</div>
+                    <div class="metric-description" id="healthDescription">Based on your utilization ratio</div>
+                </div>
+                
+                <button class="btn btn-secondary" onclick="showShareSheet()">Share Analysis</button>
+            </div>
+            
+            <div class="footer">
+                Made with ❤️ by Sauravhhh
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay" onclick="hideShareSheet()"></div>
+    
+    <div class="share-sheet" id="shareSheet">
+        <div class="share-sheet-header">
+            <div class="share-sheet-title">Share Analysis</div>
+            <button class="cancel-btn" onclick="hideShareSheet()">Cancel</button>
+        </div>
+        <div class="share-options">
+            <div class="share-option" onclick="copyToClipboard()">
+                <div class="share-option-icon">📋</div>
+                <div class="share-option-label">Copy</div>
+            </div>
+            <div class="share-option" onclick="shareToNative()">
+                <div class="share-option-icon">📤</div>
+                <div class="share-option-label">Share</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+              </html>
